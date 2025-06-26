@@ -8,6 +8,7 @@ using namespace std;
 //负数的二进制 -> 取反 -> +1 -> 负数的相反数的二进制 -> 负数
 // 1011 -> 0100 -> 0101 -> 5(2) = 0101 -> -5
 
+//打印32位二进制
 void printBinary(int num){
 	for(int i = 31; i >= 0; i--){
 		cout << ((num & (1 << i)) == 0 ? 0 : 1);
