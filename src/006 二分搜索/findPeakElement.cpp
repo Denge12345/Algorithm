@@ -13,6 +13,7 @@ class Solution {
 public:
     int findPeakElement(vector<int>& nums) {
         int n = nums.size();
+        //先判断只有一个元素和两边元素的大小情况
         if (n == 1) {
             return 0;
         } else if (nums[0] > nums[1]) {
@@ -24,10 +25,13 @@ public:
             while (l <= r) {
                 int m = (l + r) / 2;
                 if (nums[m - 1] > nums[m]) {
+                    //左边元素比中间元素大,则说明是下降的
                     r = m - 1;
                 } else if (nums[m + 1] > nums[m]) {
+                    //右面元素比中间元素大,则说明是上升的
                     l = m + 1;
                 } else {
+                    //找到一个峰值(中间元素比左右都大),直接退出
                     ans = m;
                     break;
                 }
