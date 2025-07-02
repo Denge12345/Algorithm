@@ -22,6 +22,12 @@ int findLeft(vector<int>& arr, int target){
     int ans = -1;
     while(l <= r){
         int m = (l + r) / 2;
+	//1 3 3 5 6 7 8 8 9 target = 7
+	//1 : l = 0, r = 7 m = 3; 5 < 7 l = 4
+	//2 : l = 4, r = 7 m = 6; 8 >= 7 ans = 6, r = 5
+	//3 : l = 4, r = 5 m = 4; 6 < 7 l = 5
+	//4 : l = 5, r = 5 m = 5; 7 >= 7 ans = 5, r = 4
+	//r < l 结束
         if(arr[m] >= target){
             ans = m;
             r = m - 1;
