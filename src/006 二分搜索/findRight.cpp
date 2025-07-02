@@ -21,6 +21,11 @@ int findRight(vector<int>& arr, int target){
     int l = 0, r = arr.size() - 1;
     int ans = -1;
     while(l <= r){
+	//1 3 3 5 6 7 8 8 9 target = 3
+	//1 : l = 0, r = 7 m = 3; 5 > 3 r = 2
+	//2 : l = 0, r = 2 m = 1; 3 <= 3 ans = 1 l = 2
+	//3 : l = 2, r = 2 m = 2; 3 <= 3 ans = 2 l = 3
+	//l > r 结束
         int m = (l + r) / 2;
         if(arr[m] <= target){
             ans = m;
