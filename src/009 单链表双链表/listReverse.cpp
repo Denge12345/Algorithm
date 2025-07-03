@@ -46,6 +46,7 @@ DoubleListNode* reverseDoubleList(DoubleListNode* head) {
     while(head != nullptr){
         next = head->next;
         head->next = pre;
+	//双链表要将当前节点的前指针指向下一个节点
         head->last = next;
         pre = head;
         head = next;
