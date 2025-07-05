@@ -27,25 +27,36 @@ void printList(ListNode* head) {
 }
 
 //链表相加
+//创建一个新链表返回
+//当然也可以在原链表上进行操作
 //直接提交这个函数(或其中的内容)即可
 ListNode* addTwoNumbers(ListNode* l1, ListNode* l2){
+    //分别表示答案，当前答案节点的尾指针
     ListNode* cur = nullptr;
     ListNode* ans = nullptr;
+    //分别表示进位，答案节点数值，当前两个节点的和
     int carry, val, sum;
     while(l1 != nullptr || l2 != nullptr){
+        //当前两个节点的和，如果有进位要加上
         sum = (l1 == nullptr ? 0 : l1->val) + (l2 == nullptr ? 0 : l2->val) + carry;
+        //假设 sum = 14
+        //则 val = 4, carry = 1
         val = sum % 10;
         carry = sum / 10;
+        //开始ans是空指针
         if(ans == nullptr){
             cur = new ListNode(val, nullptr);
             ans = cur;
         }else{
+            //让cur前往下一个节点
             cur->next = new ListNode(val, nullptr);
             cur = cur->next;
         }
+        //两个指针是要不是到头了就一直往下走
         l1 = l1 == nullptr ? nullptr : l1->next;
         l2 = l2 == nullptr ? nullptr : l2->next;
     }
+    //最后算完如果还有进位，在尾部添加一个节点
     if(carry == 1){
         cur->next = new ListNode(1, nullptr);
         cur = cur->next;
@@ -53,6 +64,7 @@ ListNode* addTwoNumbers(ListNode* l1, ListNode* l2){
     return ans;
 }
 
+//自测用
 void testAddTwoNumbers(){
     //链表1 2 -> 4 -> 3
     ListNode* List1Node3 = new ListNode(3, nullptr);
