@@ -53,16 +53,16 @@ ListNode* partition(ListNode* head, int x){
 }
 
 //划分链表
-//创建新链表的方法
+//创建新链表的方法,比较费空间
 //直接提交这个函数(或其中的内容)即可
 /*ListNode* partition(ListNode* head, int x) {
     if(head == nullptr){
         return head;
     }
     ListNode* ans1 = nullptr; // < x 的区域
-    ListNode* ans2 = nullptr;
-    ListNode* cur1 = nullptr; // >= x 的区域
-    ListNode* cur2 = nullptr;
+    ListNode* ans2 = nullptr; // >= x 的区域
+    ListNode* cur1 = nullptr; // < x 区域,当前的指针
+    ListNode* cur2 = nullptr; // >= x 的区域,当前的指针
     int val;
     while(head != nullptr){
         val = head->val;
