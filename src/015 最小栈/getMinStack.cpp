@@ -5,7 +5,7 @@ using namespace std;
 // 测试链接 : https://leetcode.cn/problems/min-stack/
 
 // 使用STL实现
-// 直接提交下面的类即可
+// 提交时请修改类名和构造函数名称为MinStack
 class MinStack1 {
 public:
     //初始化堆栈对象。
@@ -43,7 +43,7 @@ public:
 };
 
 // 使用数组实现
-// 直接提交下面的类即可
+// 提交时请修改类名和构造函数名称为MinStack
 class MinStack2{
     public:
     //初始化堆栈对象。
