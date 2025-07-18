@@ -4,6 +4,7 @@ using namespace std;
 // 设计循环双端队列
 // 测试链接 : https://leetcode.cn/problems/design-circular-deque/
 
+//提交时请修改类名和构造函数名称为MyCircularDeque
 class MyCircularDeque1 {
 public:
     //构造函数,双端队列最大为 k 。
@@ -74,6 +75,7 @@ public:
     deque<int> q;
 };
 
+//提交时请修改类名和构造函数名称为MyCircularDeque
 class MyCircularDeque2 {
 public:
     //构造函数,双端队列最大为 k 。
