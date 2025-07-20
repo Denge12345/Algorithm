@@ -4,6 +4,7 @@ using namespace std;
 //填函数风格
 //https://www.nowcoder.com/practice/840eee05dccd4ffd8f9433ce8085946b
 
+//提交时需要提交除main和test以外的所有函数
 int maxSumSubarray(vector<int> arr, int m){
     int Max = INT_MIN;
     int cur = 0;
