@@ -47,6 +47,7 @@ inline int read1(){
     int s = 0, w = 1;
     char ch = getchar();
     while(ch < '0' || ch > '9'){
+        //是否读到了负号(是否是负数)
         if(ch == '-') w *= -1;
         ch = getchar();
     }
@@ -71,10 +72,14 @@ void testGetChar(){
 
 //使用fread和自己写快读
 //通过全部测试样例 不开O2优化,通过的样例最慢1.41s
+//buf表示输入缓冲区,p1表示当前读取位置,p2表示缓冲区有效数据结束位置
 char buf[1 << 21], *p1 = buf, *p2 = buf;
 
 inline char gc(){
+    //缓冲区是否读完
     if(p1 == p2){
+        //重新填充缓冲区
+        //从标准输入(stdin)读取最多1<<21字节数据到缓冲区buf
         p2 = buf + fread(buf, 1, 1 << 21, stdin);
         p1 = buf;
     }
@@ -85,6 +90,7 @@ inline int read2(){
     int s = 0, w = 1;
     char ch = gc();
     while(ch < '0' || ch > '9'){
+        //是否读到了负号(是否是负数)
         if(ch == '-') w *= -1;
         ch = gc();
     }
