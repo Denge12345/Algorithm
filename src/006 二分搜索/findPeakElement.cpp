@@ -9,6 +9,7 @@ using namespace std;
 // 你必须实现时间复杂度为 O(log n) 的算法来解决此问题。
 // 测试链接 : https://leetcode.cn/problems/find-peak-element/
 
+//直接提交如下类即可
 class Solution {
 public:
     int findPeakElement(vector<int>& nums) {
