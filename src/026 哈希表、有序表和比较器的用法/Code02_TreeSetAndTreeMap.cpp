@@ -21,9 +21,11 @@ int main(){
     cout << (mp.find(4) != mp.end()) << endl;
     cout << mp.begin()->first << endl;
     cout << mp.rbegin()->first << endl;
+    // map中，所有的key，<=4且最近的key是什么
     auto it = mp.upper_bound(4);
     --it;
     cout << it->first << endl;
+    // map中，所有的key，>=4且最近的key是什么
     cout << mp.lower_bound(4)->first << endl;
 
     cout << "===========" << endl;
