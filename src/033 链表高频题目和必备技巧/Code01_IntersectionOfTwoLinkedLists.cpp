@@ -27,7 +27,9 @@ ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
     if(headA == nullptr || headB == nullptr){
         return nullptr;
     }
+    // 分别表示两个链表的长度
     int Alen = 0, Blen = 0;
+    // 计算两个链表的长度
     ListNode* tmp = headA;
     while(tmp != nullptr){
         Alen++;
@@ -38,7 +40,9 @@ ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
         Blen++;
         tmp = tmp->next;
     }
+    // 长度之差
     int diff = abs(Alen - Blen);
+    // 谁长让谁先走diff步,然后一起走,直到相遇
     if(Alen - Blen > 0){
         while(diff--){
             headA = headA->next;
