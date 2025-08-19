@@ -3,7 +3,7 @@ using namespace std;
 
 // 堆结构和堆排序，填函数练习风格
 // 测试链接 : https://leetcode.cn/problems/sort-an-array/
-
+// 直接提交如下类即可
 class Solution {
 public:
     void heapInsert(vector<int>& nums, int i){
