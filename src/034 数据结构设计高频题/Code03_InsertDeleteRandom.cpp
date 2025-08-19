@@ -3,7 +3,7 @@ using namespace std;
 
 // 插入、删除和获取随机元素O(1)时间的结构
 // 测试链接 : https://leetcode.cn/problems/insert-delete-getrandom-o1/
-// 直接提交如下方法即可
+// 直接提交如下类即可
 class RandomizedSet {
 public:
     unordered_map<int, int> mp;
