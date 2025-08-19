@@ -3,7 +3,7 @@ using namespace std;
 
 // 基数排序
 // 测试链接 : https://leetcode.cn/problems/sort-an-array/
-
+// 直接提交如下类即可
 class Solution{
 public:
     long long help[50009], cnts[50009], BASE = 10;
