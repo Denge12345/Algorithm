@@ -80,6 +80,8 @@ inline char gc(){
     if(p1 == p2){
         //重新填充缓冲区
         //从标准输入(stdin)读取最多1<<21字节数据到缓冲区buf
+        int len = fread(buf, 1, 1 << 21, stdin);
+        if(!len) return EOF;
         p2 = buf + fread(buf, 1, 1 << 21, stdin);
         p1 = buf;
     }
@@ -89,6 +91,7 @@ inline char gc(){
 inline int read2(){
     int s = 0, w = 1;
     char ch = gc();
+    if(ch == EOF) return 0;
     while(ch < '0' || ch > '9'){
         //是否读到了负号(是否是负数)
         if(ch == '-') w *= -1;
