@@ -6,19 +6,23 @@ using namespace std;
 // 包含 left 、right 端点
 // 测试链接 : https://leetcode.cn/problems/bitwise-and-of-numbers-range/
 
-int rangeBitwiseAnd(int left, int right) {
-    while(left < right){
-        right -= right & -right;
+class Solution {
+public:
+    int rangeBitwiseAnd(int left, int right) {
+        while(left < right){
+            right -= right & -right;
+        }
+        return right;
     }
-    return right;
 }
 
 int main(){
     int left1 = 5, right1 = 7;
     int left2 = 0, right2 = 0;
     int left3 = 0, right3 = 2147483647;
-    cout << rangeBitwiseAnd(left1, right1) << endl;
-    cout << rangeBitwiseAnd(left2, right2) << endl;
-    cout << rangeBitwiseAnd(left3, right3) << endl;
+    Solution solution;
+    cout << solution.rangeBitwiseAnd(left1, right1) << endl;
+    cout << solution.rangeBitwiseAnd(left2, right2) << endl;
+    cout << solution.rangeBitwiseAnd(left3, right3) << endl;
     return 0;
 }
