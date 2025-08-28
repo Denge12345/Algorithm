@@ -23,49 +23,52 @@ void printList(ListNode* head) {
     cout << "NULL" << endl;
 }
 
-ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
-    if(headA == nullptr || headB == nullptr){
-        return nullptr;
+class Solution {
+public:
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        if(headA == nullptr || headB == nullptr){
+            return nullptr;
+        }
+        // 分别表示两个链表的长度
+        int Alen = 0, Blen = 0;
+        // 计算两个链表的长度
+        ListNode* tmp = headA;
+        while(tmp != nullptr){
+            Alen++;
+            tmp = tmp->next;
+        }
+        tmp = headB;
+        while(tmp != nullptr){
+            Blen++;
+            tmp = tmp->next;
+        }
+        // 长度之差
+        int diff = abs(Alen - Blen);
+        // 谁长让谁先走diff步,然后一起走,直到相遇
+        if(Alen - Blen > 0){
+            while(diff--){
+                headA = headA->next;
+            }
+            while(headA != headB){
+                headA = headA->next;
+                headB = headB->next;
+            }
+        }else if(Alen - Blen < 0){
+            while(diff--){
+                headB = headB->next;
+            }
+            while(headA != headB){
+                headA = headA->next;
+                headB = headB->next;
+            }
+        }else{
+            while(headA != headB){
+                headA = headA->next;
+                headB = headB->next;
+            }
+        }
+        return headA;
     }
-    // 分别表示两个链表的长度
-    int Alen = 0, Blen = 0;
-    // 计算两个链表的长度
-    ListNode* tmp = headA;
-    while(tmp != nullptr){
-        Alen++;
-        tmp = tmp->next;
-    }
-    tmp = headB;
-    while(tmp != nullptr){
-        Blen++;
-        tmp = tmp->next;
-    }
-    // 长度之差
-    int diff = abs(Alen - Blen);
-    // 谁长让谁先走diff步,然后一起走,直到相遇
-    if(Alen - Blen > 0){
-        while(diff--){
-            headA = headA->next;
-        }
-        while(headA != headB){
-            headA = headA->next;
-            headB = headB->next;
-        }
-    }else if(Alen - Blen < 0){
-        while(diff--){
-            headB = headB->next;
-        }
-        while(headA != headB){
-            headA = headA->next;
-            headB = headB->next;
-        }
-    }else{
-        while(headA != headB){
-            headA = headA->next;
-            headB = headB->next;
-        }
-    }
-    return headA;
 }
 
 void test01(){
@@ -82,7 +85,8 @@ void test01(){
     printList(Node1);
     cout << "链表2: ";
     printList(Node3);
-    ListNode* res = getIntersectionNode(Node1, Node3);
+    Solution solution;
+    ListNode* res = solution.getIntersectionNode(Node1, Node3);
     cout << "相交的节点为: " << (res == nullptr ? 0 : res->val) << endl;
 }
 
@@ -98,7 +102,8 @@ void test02(){
     printList(Node1);
     cout << "链表2: ";
     printList(Node4);
-    ListNode* res = getIntersectionNode(Node1, Node4);
+    Solution solution;
+    ListNode* res = solution.getIntersectionNode(Node1, Node4);
     cout << "相交的节点为: " << (res == nullptr ? 0 : res->val) << endl;
 }
 
@@ -113,7 +118,8 @@ void test03(){
     printList(Node1);
     cout << "链表2: ";
     printList(Node4);
-    ListNode* res = getIntersectionNode(Node1, Node4);
+    Solution solution;
+    ListNode* res = solution.getIntersectionNode(Node1, Node4);
     cout << "相交的节点为: " << (res == nullptr ? 0 : res->val) << endl;
 }
 
