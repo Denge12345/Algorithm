@@ -60,7 +60,7 @@ public:
         }
         return ans;
     }
-}
+};
 
 void test01(){
     cout << "=====测试1=====" << endl;
