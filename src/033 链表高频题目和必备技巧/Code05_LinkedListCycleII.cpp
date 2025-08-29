@@ -49,7 +49,7 @@ public:
         //再次相遇后就是结果
         return slow;
     }
-}
+};
 
 void test01(){
     cout << "=====测试1=====" << endl;
