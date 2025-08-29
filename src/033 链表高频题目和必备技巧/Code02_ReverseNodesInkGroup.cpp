@@ -74,7 +74,7 @@ public:
         }
         return head;
     }
-}
+};
 
 void test01(){
     cout << "=====测试1=====" << endl;
