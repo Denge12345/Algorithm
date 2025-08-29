@@ -27,36 +27,39 @@ void printList(Node* head) {
     cout << "NULL" << endl;
 }
 
-Node* copyRandomList(Node* head) {
-    if(head == nullptr){
-        return head;
+class Solution {
+public:
+    Node* copyRandomList(Node* head) {
+        if(head == nullptr){
+            return head;
+        }
+        Node* cur = head;
+        Node* next = nullptr;
+        while(cur != nullptr){
+            next = cur->next;
+            cur->next = new Node(cur->val);
+            cur->next->next = next;
+            cur = next;
+        }
+        Node* copy = nullptr;
+        cur = head;
+        while(cur != nullptr){
+            next = cur->next->next;
+            copy = cur->next;
+            copy->random = cur->random == nullptr ? nullptr : cur->random->next;
+            cur = next;
+        }
+        Node* ans = head->next;
+        cur = head;
+        while(cur != nullptr){
+            next = cur->next->next;
+            copy = cur->next;
+            cur->next = next;
+            copy->next = next == nullptr ? nullptr : next->next;
+            cur = next;
+        }
+        return ans;
     }
-    Node* cur = head;
-    Node* next = nullptr;
-    while(cur != nullptr){
-        next = cur->next;
-        cur->next = new Node(cur->val);
-        cur->next->next = next;
-        cur = next;
-    }
-    Node* copy = nullptr;
-    cur = head;
-    while(cur != nullptr){
-        next = cur->next->next;
-        copy = cur->next;
-        copy->random = cur->random == nullptr ? nullptr : cur->random->next;
-        cur = next;
-    }
-    Node* ans = head->next;
-    cur = head;
-    while(cur != nullptr){
-        next = cur->next->next;
-        copy = cur->next;
-        cur->next = next;
-        copy->next = next == nullptr ? nullptr : next->next;
-        cur = next;
-    }
-    return ans;
 }
 
 void test01(){
@@ -71,10 +74,11 @@ void test01(){
     Node3->next = Node4, Node3->random = nullptr;
     Node2->next = Node3, Node2->random = Node1;
     Node1->next = Node2, Node2->random = nullptr;
+    Solution solution;
     cout << "链表: ";
     printList(Node1);
     cout << "新链表: ";
-    printList(copyRandomList(Node1));
+    printList(solution.copyRandomList(Node1));
 }
 
 void test02(){
@@ -83,10 +87,11 @@ void test02(){
     Node* Node1 = new Node(1);
     Node2->next = nullptr,  Node2->random = Node2;
     Node1->next = Node2, Node1->random = Node2;
+    Solution solution;
     cout << "链表: ";
     printList(Node1);
     cout << "新链表: ";
-    printList(copyRandomList(Node1));
+    printList(solution.copyRandomList(Node1));
 }
 
 void test03(){
@@ -97,10 +102,11 @@ void test03(){
     Node3->next = nullptr, Node3->random = nullptr;
     Node2->next = Node3, Node2->random = Node1;
     Node1->next = Node2, Node1->random = nullptr;
+    Solution solution;
     cout << "链表: ";
     printList(Node1);
     cout << "新链表: ";
-    printList(copyRandomList(Node1));
+    printList(solution.copyRandomList(Node1));
 }
 
 int main(){
