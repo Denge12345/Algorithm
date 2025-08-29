@@ -23,54 +23,57 @@ void printList(ListNode* head) {
     cout << "NULL" << endl;
 }
 
-ListNode* teamEnd(ListNode* s, int k){
-    while(--k != 0 && s != nullptr){
-        s = s->next;
+class Solution {
+public:
+    ListNode* teamEnd(ListNode* s, int k){
+        while(--k != 0 && s != nullptr){
+            s = s->next;
+        }
+        return s;
     }
-    return s;
-}
-
-void reverse(ListNode* s, ListNode* e){
-    e = e->next;
-    ListNode* pre = nullptr; //前一个节点
-    ListNode* cur = s; //当前节点
-    ListNode* next = nullptr; //下一个节点
-    while(cur != e){
-        next = cur->next;
-        cur->next = pre;
-        pre = cur;
-        cur = next;
+    
+    void reverse(ListNode* s, ListNode* e){
+        e = e->next;
+        ListNode* pre = nullptr; //前一个节点
+        ListNode* cur = s; //当前节点
+        ListNode* next = nullptr; //下一个节点
+        while(cur != e){
+            next = cur->next;
+            cur->next = pre;
+            pre = cur;
+            cur = next;
+        }
+        s->next = e;
     }
-    s->next = e;
-}
-
-ListNode* reverseKGroup(ListNode* head, int k){
-    //第一段单独处理,因为要换头
-    ListNode* start = head;
-    ListNode* end = teamEnd(start, k);
-    if(end == nullptr){
-        return head;
-    }
-    head = end;
-    reverse(start, end);
-    //lastTeamEnd表示上一组的尾部
-    ListNode* lastTeamEnd = start;
-    //处理后续段
-    while(lastTeamEnd->next != nullptr){
-        //start和end来到下一组
-        start = lastTeamEnd->next;
-        end = teamEnd(start, k);
+    
+    ListNode* reverseKGroup(ListNode* head, int k){
+        //第一段单独处理,因为要换头
+        ListNode* start = head;
+        ListNode* end = teamEnd(start, k);
         if(end == nullptr){
             return head;
         }
-        //反转后,end变为头部,start变为尾部
+        head = end;
         reverse(start, end);
-        //将上一组的尾部指向end
-        lastTeamEnd->next = end;
-        //上一组的尾部指向下一组的尾部
-        lastTeamEnd = start;
+        //lastTeamEnd表示上一组的尾部
+        ListNode* lastTeamEnd = start;
+        //处理后续段
+        while(lastTeamEnd->next != nullptr){
+            //start和end来到下一组
+            start = lastTeamEnd->next;
+            end = teamEnd(start, k);
+            if(end == nullptr){
+                return head;
+            }
+            //反转后,end变为头部,start变为尾部
+            reverse(start, end);
+            //将上一组的尾部指向end
+            lastTeamEnd->next = end;
+            //上一组的尾部指向下一组的尾部
+            lastTeamEnd = start;
+        }
+        return head;
     }
-    return head;
 }
 
 void test01(){
@@ -80,10 +83,11 @@ void test01(){
     ListNode* Node3 = new ListNode(3, Node4);
     ListNode* Node2 = new ListNode(2, Node3);
     ListNode* Node1 = new ListNode(1, Node2);
+    Solution solution;
     cout << "链表: ";
     printList(Node1);
     cout << "反转后的结果: ";
-    printList(reverseKGroup(Node1, 2));
+    printList(solution.reverseKGroup(Node1, 2));
 }
 
 void test02(){
@@ -93,10 +97,11 @@ void test02(){
     ListNode* Node3 = new ListNode(3, Node4);
     ListNode* Node2 = new ListNode(2, Node3);
     ListNode* Node1 = new ListNode(1, Node2);
+    Solution solution;
     cout << "链表: ";
     printList(Node1);
     cout << "反转后的结果: ";
-    printList(reverseKGroup(Node1, 3));
+    printList(solution.reverseKGroup(Node1, 3));
 }
 
 int main(){
